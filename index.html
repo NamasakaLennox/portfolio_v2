@@ -14,6 +14,7 @@
         background-color: #f4f4f4; /* Light background */
         color: #333; /* Dark text */
         line-height: 1.6;
+        min-height: 100vh;
       }
 
       /* 2. Custom utility classes for the look */
@@ -35,10 +36,27 @@
       .link-style {
         color: #1e40af; /* Darker blue link */
         text-decoration: none;
+        cursor: pointer;
       }
 
       .link-style:hover {
         text-decoration: underline;
+      }
+
+      .button-style {
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #333;
+        color: #fff;
+        border: 1px solid #333;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.1s;
+      }
+
+      .button-style:hover {
+        background-color: #1e40af;
+        border-color: #1e40af;
       }
 
       /* 3. Responsive main container */
@@ -49,6 +67,7 @@
         margin: 40px auto;
         background-color: #ffffff;
         box-shadow: 5px 5px 0px 0px #333; /* Old-school shadow effect */
+        min-height: 60vh; /* Ensure some height for SPA transitions */
       }
 
       /* 4. Scroll smoothing */
@@ -60,6 +79,45 @@
       .list-item-title {
         font-weight: bold;
         margin-top: 1.5rem;
+      }
+
+      /* Blog specific styling */
+      .blog-post-card {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #ccc;
+        margin-bottom: 20px;
+        padding: 15px;
+        transition: box-shadow 0.2s;
+        cursor: pointer;
+        border-radius: 0; /* Keep it sharp */
+        box-shadow: 2px 2px 0 0 #ccc;
+      }
+
+      .blog-post-card:hover {
+        box-shadow: 4px 4px 0 0 #333;
+      }
+
+      .blog-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        margin-bottom: 10px;
+        border: 1px dashed #333;
+      }
+
+      @media (min-width: 768px) {
+        .blog-post-card {
+          flex-direction: row;
+        }
+        .blog-image-container {
+          flex-basis: 30%;
+          margin-right: 20px;
+          flex-shrink: 0;
+        }
+        .blog-content-container {
+          flex-basis: 70%;
+        }
       }
     </style>
   </head>
@@ -82,231 +140,27 @@
         </div>
       </header>
 
-      <!-- NAVIGATION (Minimalist approach) -->
-      <nav class="text-center mb-8 pb-4 border-b border-gray-400">
+      <!-- NAVIGATION -->
+      <nav
+        class="text-center mb-8 pb-4 border-b border-gray-400 flex flex-wrap justify-center space-x-4 md:space-x-8"
+      >
         <a
-          href="#experience"
-          class="link-style mx-3 md:mx-6 text-base font-semibold"
-          >01. Experience</a
+          onclick="renderView('portfolio')"
+          class="link-style text-base font-semibold"
+          >01. Portfolio</a
         >
         <a
-          href="#projects"
-          class="link-style mx-3 md:mx-6 text-base font-semibold"
-          >02. Projects</a
-        >
-        <a
-          href="#skills"
-          class="link-style mx-3 md:mx-6 text-base font-semibold"
-          >03. Skills</a
-        >
-        <a
-          href="#education"
-          class="link-style mx-3 md:mx-6 text-base font-semibold"
-          >04. Education</a
+          onclick="renderView('blogs')"
+          class="link-style text-base font-semibold"
+          >02. Blog</a
         >
       </nav>
 
-      <!-- Summary Section -->
-      <section id="summary" class="mb-10 pt-4">
-        <h3 class="section-header">Summary</h3>
-        <p class="text-sm text-gray-800 mb-2">
-          I am a passionate Software Engineer specialized in building robust and
-          performance-optimized full-stack applications. My experience spans
-          designing scalable REST APIs, implementing data pipelines with tools
-          like Docker and Jenkins, and utilizing Firebase/Firestore and MySQL
-          for data management. I am driven by creating efficient, user-centric
-          solutions, demonstrated by my work on the CBC App for educators and
-          automation tools for large-scale data extraction at vLex. My core
-          ambition is to excel in DevOps, Cloud Computing, and Software
-          Architecture, continuously applying skills in problem-solving and
-          collaboration to deliver resilient and impactful software.
-        </p>
-      </section>
-      <!-- 1. EXPERIENCE SECTION -->
-      <section id="experience" class="mb-10 pt-4">
-        <h3 class="section-header">Experience</h3>
-
-        <!-- Verb Education -->
-        <div class="mt-4">
-          <h4 class="list-item-title">Software Engineer @ Verb Education</h4>
-          <p class="text-xs text-gray-600 mb-2">Feb 2024 - Current</p>
-          <ul class="list-disc ml-5 text-sm space-y-2">
-            <li>
-              Developed and maintained the **CBC App** (assessment and
-              record-keeping tool) for educators.
-            </li>
-            <li>
-              Designed, developed, and maintained a secure and
-              performance-optimized **API**, implementing deployment to Google
-              Cloud Functions.
-            </li>
-            <li>
-              Integrated **PostHog analytics** to track usage and make
-              data-driven decisions for continuous improvement.
-            </li>
-            <li>
-              Prioritized low bandwidth usage and responsiveness across desktop
-              and mobile platforms for diverse learning environments.
-            </li>
-          </ul>
-        </div>
-
-        <!-- vLex -->
-        <div class="mt-6">
-          <h4 class="list-item-title">Web Automation Engineer @ vLex</h4>
-          <p class="text-xs text-gray-600 mb-2">Feb 2024 - Current</p>
-          <ul class="list-disc ml-5 text-sm space-y-2">
-            <li>
-              Built automation tools for data extraction and parsing using
-              **node-fetch, playwright, and puppeteer**.
-            </li>
-            <li>
-              Utilized **AWS S3** for secure and scalable storage of processed
-              and raw datasets.
-            </li>
-            <li>
-              Implemented containerized solutions with **Docker** and automated
-              **CI/CD pipelines using Jenkins**.
-            </li>
-            <li>
-              Designed and automated robust data pipelines and maintained data
-              warehouses.
-            </li>
-          </ul>
-        </div>
-
-        <!-- KenGen PLC -->
-        <div class="mt-6">
-          <h4 class="list-item-title">
-            Network Administration Internship @ KenGen PLC
-          </h4>
-          <p class="text-xs text-gray-600 mb-2">Jan - Apr 2023</p>
-          <ul class="list-disc ml-5 text-sm space-y-2">
-            <li>
-              Diagnosed and resolved network issues to maintain uninterrupted
-              network operations.
-            </li>
-            <li>
-              Implemented and maintained security measures like firewalls and
-              access controls.
-            </li>
-            <li>
-              Gained hands-on experience in cloud infrastructure provisioning,
-              monitoring, and automation.
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- 2. PERSONAL PROJECTS SECTION -->
-      <section id="projects" class="mb-10 pt-4">
-        <h3 class="section-header">Personal Projects</h3>
-
-        <!-- XPress Truckers -->
-        <div class="mt-4">
-          <h4 class="list-item-title">XPress Truckers</h4>
-          <p class="text-sm text-gray-800 mb-2">
-            Optimizes logistics by enhancing efficiency in transportation.
-          </p>
-          <ul class="list-disc ml-5 text-sm space-y-1">
-            <li>
-              **Architecture:** Designed web applications for optimal structure
-              and scalability.
-            </li>
-            <li>**Backend:** Created MySQL schemas with Flask SQLAlchemy.</li>
-            <li>
-              **API:** Crafted secure API routes, integrating **JSON Web Tokens
-              (JWT)** for robust authentication.
-            </li>
-            <li>
-              **Deployment:** Managed Nginx configuration, SSH, SSL certificate
-              management, and server security.
-            </li>
-          </ul>
-        </div>
-
-        <!-- Msimu -->
-        <div class="mt-6">
-          <h4 class="list-item-title">Msimu</h4>
-          <p class="text-sm text-gray-800 mb-2">
-            A machine learning-powered web application empowering farmers to
-            enhance agricultural decision-making.
-          </p>
-          <ul class="list-disc ml-5 text-sm space-y-1">
-            <li>
-              **Full Stack Development:** Implemented frontend and backend
-              components.
-            </li>
-            <li>
-              **Machine Learning:** Integrated ML models for predictive
-              analytics.
-            </li>
-            <li>
-              **UI/UX Design:** Developed intuitive interfaces for optimal user
-              experience.
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- 3. TECHNICAL SKILLS SECTION -->
-      <section id="skills" class="mb-10 pt-4">
-        <h3 class="section-header">Technical Skills</h3>
-
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-3 gap-x-6 text-sm mt-4"
-        >
-          <div>
-            <span class="font-bold">Languages:</span> C, **Python**,
-            **Javascript/Typescript**, HTML/CSS, SQL, Bash
-          </div>
-          <div>
-            <span class="font-bold">Frameworks/Libs:</span> **Angular**,
-            Node.js, SQLAlchemy, Posthog
-          </div>
-          <div>
-            <span class="font-bold">Cloud/DB:</span> **Firebase/Firestore**,
-            MySQL, **Docker**, Google Cloud Platform, AWS
-          </div>
-          <div>
-            <span class="font-bold">Interests:</span> DevOps, Cloud Computing,
-            Software Architecture
-          </div>
-          <div>
-            <span class="font-bold">Coursework:</span> Data Structures &
-            Algorithms, OOP, REST API, ORM
-          </div>
-          <div>
-            <span class="font-bold">Soft Skills:</span> Problem Solving,
-            Collaboration, Self-learning, Adaptability
-          </div>
-        </div>
-      </section>
-
-      <!-- 4. EDUCATION SECTION -->
-      <section id="education" class="pt-4">
-        <h3 class="section-header">Education & Certifications</h3>
-
-        <div class="mt-4 space-y-4 text-sm">
-          <!-- JKUAT -->
-          <div>
-            <p class="font-bold">
-              Jomo Kenyatta University of Agriculture and Technology
-            </p>
-            <p>Bachelor of Science in Computer Science - Degree</p>
-          </div>
-          <!-- ALX -->
-          <div>
-            <p class="font-bold">ALX Africa</p>
-            <p>Software Engineering - Certification</p>
-          </div>
-          <!-- AWS -->
-          <div>
-            <p class="font-bold">Amazon Web Services</p>
-            <p>AWS Educate Introduction to Cloud 101 - Certification</p>
-          </div>
-        </div>
-      </section>
+      <!-- Dynamic Content Area -->
+      <main id="content-area">
+        <!-- Content will be injected here by JavaScript -->
+        <div class="text-center text-gray-500">Loading Content...</div>
+      </main>
 
       <!-- FOOTER -->
       <footer class="text-center text-xs mt-12 pt-4 border-t border-gray-400">
@@ -314,5 +168,420 @@
         <p class="mt-2">Lennox Namasaka - Software Engineer Portfolio (2024)</p>
       </footer>
     </div>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+      import {
+        getAuth,
+        signInAnonymously,
+        signInWithCustomToken,
+        onAuthStateChanged,
+      } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+      import {
+        getFirestore,
+        collection,
+        query,
+        orderBy,
+        onSnapshot,
+        doc,
+        getDoc,
+        addDoc,
+        serverTimestamp,
+      } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+      // --- FIREBASE INITIALIZATION & AUTH ---
+
+      const contentArea = document.getElementById("content-area");
+      let db = null;
+      let auth = null;
+      let userId = null;
+      let isAuthReady = false;
+
+      const firebaseConfig =
+        typeof __firebase_config !== "undefined"
+          ? JSON.parse(__firebase_config)
+          : {};
+      const appId =
+        typeof __app_id !== "undefined" ? __app_id : "default-app-id";
+
+      // The blog posts will be public data so all users can view them.
+      const PUBLIC_BLOG_COLLECTION_PATH = `/artifacts/${appId}/public/data/blog_posts`;
+
+      async function initializeFirebase() {
+        try {
+          const app = initializeApp(firebaseConfig);
+          db = getFirestore(app);
+          auth = getAuth(app);
+
+          if (typeof __initial_auth_token !== "undefined") {
+            await signInWithCustomToken(auth, __initial_auth_token);
+          } else {
+            await signInAnonymously(auth);
+          }
+
+          onAuthStateChanged(auth, (user) => {
+            userId = user ? user.uid : crypto.randomUUID();
+            isAuthReady = true;
+            console.log("Firebase Auth Ready. User ID:", userId);
+            // Render the initial view after auth is ready
+            const path = window.location.hash.slice(1).split("/");
+            renderView(path[0] || "portfolio", path[1]);
+          });
+        } catch (error) {
+          console.error("Error initializing Firebase:", error);
+          contentArea.innerHTML = `<div class="text-red-600 text-center mt-8">Error loading application services.</div>`;
+        }
+      }
+
+      // --- VIEW RENDERING FUNCTIONS (SPA LOGIC) ---
+
+      window.renderView = (viewName, postId = null) => {
+        window.location.hash = postId ? `${viewName}/${postId}` : viewName;
+
+        switch (viewName) {
+          case "blogs":
+            if (postId) {
+              renderBlogPostView(postId);
+            } else {
+              renderBlogsListView();
+            }
+            break;
+          case "write":
+            renderWritePostView();
+            break;
+          case "portfolio":
+          default:
+            renderPortfolioView();
+            break;
+        }
+      };
+
+      function renderPortfolioView() {
+        contentArea.innerHTML = `
+            <section id="experience" class="mb-10 pt-4">
+                <h3 class="section-header">Experience</h3>
+
+                <!-- Verb Education -->
+                <div class="mt-4">
+                    <h4 class="list-item-title">Software Engineer @ Verb Education</h4>
+                    <p class="text-xs text-gray-600 mb-2">Feb 2024 - Current</p>
+                    <ul class="list-disc ml-5 text-sm space-y-2">
+                        <li>Developed and maintained the **CBC App** (assessment and record-keeping tool) for educators.</li>
+                        <li>Designed, developed, and maintained a secure and performance-optimized **API**, implementing deployment to Google Cloud Functions.</li>
+                        <li>Integrated **PostHog analytics** to track usage and make data-driven decisions for continuous improvement.</li>
+                        <li>Prioritized low bandwidth usage and responsiveness across desktop and mobile platforms for diverse learning environments.</li>
+                    </ul>
+                </div>
+
+                <!-- vLex -->
+                <div class="mt-6">
+                    <h4 class="list-item-title">Web Automation Engineer @ vLex</h4>
+                    <p class="text-xs text-gray-600 mb-2">Feb 2024 - Current</p>
+                    <ul class="list-disc ml-5 text-sm space-y-2">
+                        <li>Built automation tools for data extraction and parsing using **node-fetch, playwright, and puppeteer**.</li>
+                        <li>Utilized **AWS S3** for secure and scalable storage of processed and raw datasets.</li>
+                        <li>Implemented containerized solutions with **Docker** and automated **CI/CD pipelines using Jenkins**.</li>
+                        <li>Designed and automated robust data pipelines and maintained data warehouses.</li>
+                    </ul>
+                </div>
+
+                <!-- KenGen PLC -->
+                <div class="mt-6">
+                    <h4 class="list-item-title">Network Administration Internship @ KenGen PLC</h4>
+                    <p class="text-xs text-gray-600 mb-2">Jan - Apr 2023</p>
+                    <ul class="list-disc ml-5 text-sm space-y-2">
+                        <li>Diagnosed and resolved network issues to maintain uninterrupted network operations.</li>
+                        <li>Implemented and maintained security measures like firewalls and access controls.</li>
+                        <li>Gained hands-on experience in cloud infrastructure provisioning, monitoring, and automation.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="projects" class="mb-10 pt-4">
+                <h3 class="section-header">Personal Projects</h3>
+
+                <!-- XPress Truckers -->
+                <div class="mt-4">
+                    <h4 class="list-item-title">XPress Truckers</h4>
+                    <p class="text-sm text-gray-800 mb-2">Optimizes logistics by enhancing efficiency in transportation.</p>
+                    <ul class="list-disc ml-5 text-sm space-y-1">
+                        <li>**Architecture:** Designed web applications for optimal structure and scalability.</li>
+                        <li>**Backend:** Created MySQL schemas with Flask SQLAlchemy.</li>
+                        <li>**API:** Crafted secure API routes, integrating **JSON Web Tokens (JWT)** for robust authentication.</li>
+                        <li>**Deployment:** Managed Nginx configuration, SSH, SSL certificate management, and server security.</li>
+                    </ul>
+                </div>
+
+                <!-- Msimu -->
+                <div class="mt-6">
+                    <h4 class="list-item-title">Msimu</h4>
+                    <p class="text-sm text-gray-800 mb-2">A machine learning-powered web application empowering farmers to enhance agricultural decision-making.</p>
+                    <ul class="list-disc ml-5 text-sm space-y-1">
+                        <li>**Full Stack Development:** Implemented frontend and backend components.</li>
+                        <li>**Machine Learning:** Integrated ML models for predictive analytics.</li>
+                        <li>**UI/UX Design:** Developed intuitive interfaces for optimal user experience.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="skills" class="mb-10 pt-4">
+                <h3 class="section-header">Technical Skills</h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-3 gap-x-6 text-sm mt-4">
+                    <div>
+                        <span class="font-bold">Languages:</span> C, **Python**, **Javascript/Typescript**, HTML/CSS, SQL, Bash
+                    </div>
+                    <div>
+                        <span class="font-bold">Frameworks/Libs:</span> **Angular**, Node.js, SQLAlchemy, Posthog
+                    </div>
+                    <div>
+                        <span class="font-bold">Cloud/DB:</span> **Firebase/Firestore**, MySQL, **Docker**, Google Cloud Platform, AWS
+                    </div>
+                    <div>
+                        <span class="font-bold">Interests:</span> DevOps, Cloud Computing, Software Architecture
+                    </div>
+                    <div>
+                        <span class="font-bold">Coursework:</span> Data Structures & Algorithms, OOP, REST API, ORM
+                    </div>
+                    <div>
+                        <span class="font-bold">Soft Skills:</span> Problem Solving, Collaboration, Self-learning, Adaptability
+                    </div>
+                </div>
+            </section>
+
+            <section id="education" class="pt-4">
+                <h3 class="section-header">Education & Certifications</h3>
+
+                <div class="mt-4 space-y-4 text-sm">
+                    <!-- JKUAT -->
+                    <div>
+                        <p class="font-bold">Jomo Kenyatta University of Agriculture and Technology</p>
+                        <p>Bachelor of Science in Computer Science - Degree</p>
+                    </div>
+                    <!-- ALX -->
+                    <div>
+                        <p class="font-bold">ALX Africa</p>
+                        <p>Software Engineering - Certification</p>
+                    </div>
+                    <!-- AWS -->
+                    <div>
+                        <p class="font-bold">Amazon Web Services</p>
+                        <p>AWS Educate Introduction to Cloud 101 - Certification</p>
+                    </div>
+                </div>
+            </section>
+        `;
+      }
+
+      function renderBlogsListView() {
+        contentArea.innerHTML = `
+            <div class="flex justify-between items-center mb-6 border-b border-gray-400 pb-3">
+                <h3 class="section-header border-none">Technical Blog</h3>
+                <button onclick="renderView('write')" class="button-style text-xs">
+                    [ Write New Post ]
+                </button>
+            </div>
+            <div id="blog-list-container" class="space-y-6">
+                <div class="text-center text-gray-500">[ Fetching Blog Posts... ]</div>
+            </div>
+        `;
+
+        // Start listening to the Firestore collection
+        const q = query(
+          collection(db, PUBLIC_BLOG_COLLECTION_PATH),
+          orderBy("createdAt", "desc")
+        );
+
+        onSnapshot(
+          q,
+          (snapshot) => {
+            const blogPosts = [];
+            snapshot.forEach((doc) => {
+              blogPosts.push({ id: doc.id, ...doc.data() });
+            });
+
+            const container = document.getElementById("blog-list-container");
+            if (!container) return;
+
+            if (blogPosts.length === 0) {
+              container.innerHTML = `<div class="text-center text-gray-500 mt-8">[ No posts found. Click 'Write New Post' to start blogging. ]</div>`;
+              return;
+            }
+
+            container.innerHTML = blogPosts
+              .map(
+                (post) => `
+                <div class="blog-post-card" onclick="renderView('blogs', '${
+                  post.id
+                }')">
+                    <div class="blog-image-container">
+                        <img src="${
+                          post.imageUrl ||
+                          "https://placehold.co/400x200/cccccc/333333?text=Post+Preview"
+                        }"
+                             class="blog-image"
+                             alt="Preview image for ${post.title}"
+                             onerror="this.onerror=null; this.src='https://placehold.co/400x200/cccccc/333333?text=Post+Preview'"
+                        >
+                    </div>
+                    <div class="blog-content-container">
+                        <h4 class="font-bold text-lg mb-1">${post.title}</h4>
+                        <p class="text-xs text-gray-600 mb-2">
+                           ${
+                             post.createdAt
+                               ? new Date(
+                                   post.createdAt.seconds * 1000
+                                 ).toLocaleDateString()
+                               : "Draft"
+                           }
+                        </p>
+                        <p class="text-sm">${post.summary}</p>
+                        <span class="link-style text-xs mt-2 inline-block">-- Read More --</span>
+                    </div>
+                </div>
+            `
+              )
+              .join("");
+          },
+          (error) => {
+            console.error("Error fetching blog posts:", error);
+            document.getElementById(
+              "blog-list-container"
+            ).innerHTML = `<div class="text-red-600 text-center mt-8">[ Error loading blog posts. ]</div>`;
+          }
+        );
+      }
+
+      async function renderBlogPostView(postId) {
+        contentArea.innerHTML = `<div class="text-center mt-8">[ Fetching Post ${postId}... ]</div>`;
+
+        try {
+          const docRef = doc(db, PUBLIC_BLOG_COLLECTION_PATH, postId);
+          const docSnap = await getDoc(docRef);
+
+          if (docSnap.exists()) {
+            const post = docSnap.data();
+
+            contentArea.innerHTML = `
+                    <div class="mb-8">
+                        <a onclick="renderView('blogs')" class="link-style text-sm">&lt; Back to all Posts</a>
+                    </div>
+                    <h1 class="text-2xl font-bold mb-2">${post.title}</h1>
+                    <p class="text-xs text-gray-600 mb-4 border-b pb-2">
+                        Published: ${
+                          post.createdAt
+                            ? new Date(
+                                post.createdAt.seconds * 1000
+                              ).toLocaleDateString()
+                            : "Draft"
+                        }
+                    </p>
+
+                    <img src="${
+                      post.imageUrl ||
+                      "https://placehold.co/800x400/cccccc/333333?text=Post+Image"
+                    }"
+                         class="w-full h-auto mb-6 blog-image"
+                         alt="${post.title}"
+                         onerror="this.onerror=null; this.src='https://placehold.co/800x400/cccccc/333333?text=Post+Image'"
+                    >
+
+                    <!-- Render Post Content. Assuming 'content' is simple text or HTML -->
+                    <div class="prose max-w-none text-sm space-y-4 border-t pt-4">
+                       ${post.content.replace(/\n/g, "<br>")}
+                    </div>
+                `;
+          } else {
+            contentArea.innerHTML = `<div class="text-center mt-8 text-red-600">[ Error: Post not found. ]</div>`;
+          }
+        } catch (error) {
+          console.error("Error fetching single post:", error);
+          contentArea.innerHTML = `<div class="text-center mt-8 text-red-600">[ An error occurred while loading the post. ]</div>`;
+        }
+      }
+
+      function renderWritePostView() {
+        if (!isAuthReady || !userId) {
+          contentArea.innerHTML = `<div class="text-center mt-8 text-red-600">[ Authentication is required to write a post. Please wait for initialization. ]</div>`;
+          return;
+        }
+
+        contentArea.innerHTML = `
+            <h3 class="section-header mb-6">Write New Blog Post</h3>
+            <form id="blog-form" class="space-y-4">
+                <div>
+                    <label for="post-title" class="block text-sm font-bold mb-1">Title</label>
+                    <input type="text" id="post-title" required class="w-full typewriter-border p-2 focus:outline-none focus:ring-1 focus:ring-blue-600">
+                </div>
+                <div>
+                    <label for="post-summary" class="block text-sm font-bold mb-1">Summary (for preview)</label>
+                    <textarea id="post-summary" rows="2" required class="w-full typewriter-border p-2 focus:outline-none focus:ring-1 focus:ring-blue-600"></textarea>
+                </div>
+                <div>
+                    <label for="post-image-url" class="block text-sm font-bold mb-1">Image URL (Optional)</label>
+                    <input type="url" id="post-image-url" class="w-full typewriter-border p-2 focus:outline-none focus:ring-1 focus:ring-blue-600" placeholder="e.g. https://placehold.co/800x400">
+                </div>
+                <div>
+                    <label for="post-content" class="block text-sm font-bold mb-1">Full Content</label>
+                    <textarea id="post-content" rows="15" required class="w-full typewriter-border p-2 focus:outline-none focus:ring-1 focus:ring-blue-600" placeholder="Write your blog content here..."></textarea>
+                </div>
+                <div class="flex justify-between items-center">
+                    <button type="submit" class="button-style text-sm">
+                        [ Publish Post ]
+                    </button>
+                    <a onclick="renderView('blogs')" class="link-style text-sm text-red-600 cursor-pointer">Cancel</a>
+                </div>
+                <div id="form-message" class="text-sm mt-4 text-center"></div>
+            </form>
+        `;
+
+        document
+          .getElementById("blog-form")
+          .addEventListener("submit", handlePostSubmit);
+      }
+
+      async function handlePostSubmit(event) {
+        event.preventDefault();
+        const form = event.target;
+        const title = form.querySelector("#post-title").value.trim();
+        const summary = form.querySelector("#post-summary").value.trim();
+        const imageUrl = form.querySelector("#post-image-url").value.trim();
+        const content = form.querySelector("#post-content").value.trim();
+        const messageBox = document.getElementById("form-message");
+
+        if (!title || !summary || !content) {
+          messageBox.className = "text-sm mt-4 text-center text-red-600";
+          messageBox.textContent =
+            "[ Error: Title, Summary, and Content are required. ]";
+          return;
+        }
+
+        messageBox.className = "text-sm mt-4 text-center text-blue-600";
+        messageBox.textContent = "[ Publishing... Please wait. ]";
+
+        try {
+          await addDoc(collection(db, PUBLIC_BLOG_COLLECTION_PATH), {
+            title: title,
+            summary: summary,
+            imageUrl: imageUrl,
+            content: content,
+            authorId: userId,
+            createdAt: serverTimestamp(),
+          });
+
+          messageBox.className = "text-sm mt-4 text-center text-green-600";
+          messageBox.textContent =
+            "[ Post Published Successfully! Redirecting... ]";
+          setTimeout(() => renderView("blogs"), 1500);
+        } catch (error) {
+          console.error("Error publishing post:", error);
+          messageBox.className = "text-sm mt-4 text-center text-red-600";
+          messageBox.textContent = `[ Publish Error: ${error.message}. ]`;
+        }
+      }
+
+      // --- INITIALIZATION ---
+      window.addEventListener("load", initializeFirebase);
+    </script>
   </body>
 </html>
