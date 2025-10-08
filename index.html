@@ -354,8 +354,21 @@
       <!-- FOOTER -->
       <footer class="text-center text-xs mt-12 pt-4 border-t border-gray-400">
         <p>*** End of File ***</p>
-        <p class="mt-2">Lennox Namasaka - Software Engineer Portfolio (2024)</p>
+        <p class="mt-2">
+          Lennox Namasaka - Software Engineer Portfolio (<span
+            id="current-year"
+          ></span
+          >)
+        </p>
       </footer>
     </div>
+    <script>
+      (function () {
+        var yearEl = document.getElementById("current-year");
+        if (yearEl) {
+          yearEl.textContent = new Date().getFullYear();
+        }
+      })();
+    </script>
   </body>
 </html>
